@@ -12,7 +12,7 @@ for i in range(T):
         print(-1)
     elif r1+r2 == d or min(r1, r2)+d == max(r1, r2):
         print(1) 
-    elif r1 + r2 > d or max(r1, r2) - min(r1, r2) < d:
+    elif r1 + r2 > d and max(r1, r2) - min(r1, r2) < d:
         print(2)
     else:
         print(0)
