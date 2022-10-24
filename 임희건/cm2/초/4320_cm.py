@@ -32,7 +32,8 @@
 
 # 입력값 설명
 # 첫째 줄에 정점의 개수 N과 간선의 개수 M이 입력됩니다. (1 ≤ N, M ≤ 1,000)
-# 둘째 줄부터 M + 1번째 줄까지 정수 A와 B가 입력됩니다. (1 ≤ A, B ≤ 1,000) 이 때 각 줄은 A와 B가 서로 연결되었음을 의미합니다.
+# 둘째 줄부터 M + 1번째 줄까지 정수 A와 B가 입력됩니다. (1 ≤ A, B ≤ 1,000) 
+# 이 때 각 줄은 A와 B가 서로 연결되었음을 의미합니다.
 
 # 출력값 설명
 # 정점 1에서 깊이 우선 탐색을 수행한 결과를 공백으로 구분하여 출력합니다.
@@ -42,25 +43,28 @@ import sys
 def DFS(V, E, C):
     visited[C - 1] = True
 
-    for x in E:
-        if x[0] == C and not visited[x[1] - 1]:
-            DFS(V, E, x[1])
+    e = []
+
+    for y in E:
+        if C in y:
+            y2 = y.copy()
+            y2.remove(C)
+            e.append(y2[0])
+
+    e.sort()
+
+    for x in e:
+        if not visited[x - 1]:
+            DFS(V, E, x)
 
 N, M = map(int, sys.stdin.readline().split())
-V, E, visited, S = [], [], [], []
 
-for i in range(N):
-    V.append(i + 1)
-    visited.append(False)
+V = [i + 1 for i in range(N)]
 
-for _ in range(M):
-    a, b = map(int, sys.stdin.readline().split())
-    E.append([a, b])
+E = [list(map(int, sys.stdin.readline().split())) for _ in range(M)]
+
+visited = [False] * N
 
 DFS(V, E, 1)
 
-for j in (V):
-    if visited[j - 1]:
-        S.append(j)
-
-print(*S)
+print(*[j + 1 for j in range(N) if visited[j]])
