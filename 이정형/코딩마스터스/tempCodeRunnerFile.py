@@ -1,2 +1,1 @@
-
-  if money < 0:
+.items()
