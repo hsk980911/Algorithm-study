@@ -39,32 +39,25 @@
 # 정점 1에서 깊이 우선 탐색을 수행한 결과를 공백으로 구분하여 출력합니다.
 
 import sys
+sys.setrecursionlimit(100000)
 
-def DFS(V, E, C):
+def DFS(E, C):
     visited[C - 1] = True
 
-    e = []
+    for x in E:
+        if C in x and not visited[x[1] - 1]:
+            x2 = x.copy()
+            x2.remove(C)
 
-    for y in E:
-        if C in y:
-            y2 = y.copy()
-            y2.remove(C)
-            e.append(y2[0])
-
-    e.sort()
-
-    for x in e:
-        if not visited[x - 1]:
-            DFS(V, E, x)
+            if not visited[x2[0] - 1]:
+                DFS(E, x2[0])
 
 N, M = map(int, sys.stdin.readline().split())
-
-V = [i + 1 for i in range(N)]
-
 E = [list(map(int, sys.stdin.readline().split())) for _ in range(M)]
+E.sort(key = lambda x: (x[0], x[1]))
 
 visited = [False] * N
 
-DFS(V, E, 1)
+DFS(E, 1)
 
 print(*[j + 1 for j in range(N) if visited[j]])

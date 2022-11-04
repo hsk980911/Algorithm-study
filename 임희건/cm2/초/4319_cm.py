@@ -37,6 +37,7 @@
 # 가장 많이 가지고 있는 신발이 여러 개라면, 그 중에서 가장 번호가 큰 신발 번호를 출력하세요.
 
 import sys
+sys.setrecursionlimit(1000)
 
 N = int(sys.stdin.readline())
 
