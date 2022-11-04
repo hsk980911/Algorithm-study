@@ -38,14 +38,14 @@ import sys
 
 N = int(sys.stdin.readline())
 
-I = [int(sys.stdin.readline()) for _ in range(N)]
+i = [int(sys.stdin.readline()) for _ in range(N)]
 
-vote = [0] * N
+vote = [0] * (N + 1)
 
-for j in I:
-    vote[j - 1] += 1
+for j in i:
+    vote[j] += 1
 
-print(vote.index(max(vote)) + 1)
+print(vote.index(max(vote)))
 
 # I_max = 0
 
