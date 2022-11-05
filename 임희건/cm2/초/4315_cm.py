@@ -44,22 +44,20 @@
 import sys
 
 N, M = map(int, sys.stdin.readline().split())
-graph = []
-
-for _ in range(N):
-    graph.append([])
+graph = [[] for _ in range(N)]
 
 for _ in range(M):
     a, b = map(int, sys.stdin.readline().split())
     graph[a - 1].append(b)
     graph[b - 1].append(a)
 
-for i in range(M):
-    graph[i].sort()
+for i in graph:
+    if i:
+        i.sort()
 
-for j in range(N):
-    if graph[j]:
-        print(*graph[j])
+for j in graph:
+    if j:
+        print(*j)
 
     else:
         print('no')
