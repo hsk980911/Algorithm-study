@@ -2,7 +2,7 @@ import sys
 a = sys.stdin.readline().upper()
 b = list(a.rstrip('\n'))
 # print(b)
-word = list(set(a))
+word = list(set(b))
 count_list =[]
 # print(word)
 for i in word:
